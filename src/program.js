@@ -11,15 +11,16 @@ let calculateDistanceWithRssi = rssi => {
   }
   var ratio = rssi * 1.0 / txPower;
   if (ratio < 1.0) {
-    return Math.pow(ratio,10);
+    return Math.pow(ratio, 10);
   } else {
     var distance = (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
     return distance;
   }
 };
 
-let transformCheckpoint = (checkpoint) => {
-  if (checkpoint) {
+let transformCheckpoint = (checkpointOrigin) => {
+  if (checkpointOrigin) {
+    var checkpoint = Object.assign({}, checkpointOrigin);
     // Get back essential properties
     checkpoint.serviceData = checkpoint.advertisement.serviceData;
     checkpoint.serviceUuids = checkpoint.advertisement.serviceUuids;
@@ -33,7 +34,7 @@ let transformCheckpoint = (checkpoint) => {
     delete checkpoint.rssi;
     delete checkpoint.services;
     // Everything is ok
-    return true;
+    return checkpoint;
   } else {
     return false;
   }

@@ -9,7 +9,7 @@ describe('Function transformCheckpoint', function () {
     expect(transformCheckpoint()).to.be.false;
   });
 
-  it('Function transformCheckpoint withparameter should return true and mute param', function () {
+  it('Function transformCheckpoint withparameter should return object and dont mute param', function () {
     var testValue = {
       id: 'whataw0nd3rful1d',
       uuid: 'whataw0nd3rful1d',
@@ -27,10 +27,11 @@ describe('Function transformCheckpoint', function () {
       services: null,
       state: 'outofcontrol'
     };
+    var testValueCopy = Object.assign({}, testValue);
 
-    //var testValueCopy = Object.assign({}, testValue);
+    transformCheckpoint(testValue);
 
-    expect(transformCheckpoint(testValue) && !testValue.id).to.be.true;
+    expect(testValue).not.to.eql(testValueCopy);
   });
 
 });
