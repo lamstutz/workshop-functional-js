@@ -31,7 +31,7 @@ describe('Function transformCheckpoint', function () {
 
     transformCheckpoint(testValue);
 
-    expect(testValue).not.to.eql(testValueCopy);
+    expect(testValue).to.eql(testValueCopy);
   });
 
 });
