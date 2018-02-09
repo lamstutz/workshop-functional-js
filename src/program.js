@@ -42,11 +42,9 @@ let transformCheckpoint = (checkpointOrigin) => {
 
 let showCheckpoint = (checkpoint, index) => {
   console.log(chalk.green('CHECKPOINT'), chalk.yellow(index + 1));
-  for (var property in checkpoint) {
-    if (checkpoint.hasOwnProperty(property)) {
-      console.log(chalk.cyan(property.toUpperCase()), checkpoint[property]);
-    }
-  }
+  _.each(checkpoint, (value, key) => {
+    console.log(chalk.cyan(key.toUpperCase()), value);
+  });
   console.log('\n');
 };
 
